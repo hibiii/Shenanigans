@@ -11,7 +11,12 @@ var mineformat = {
 				mineformat.output += object.text;
 			},
 			translate: function (object) {
-				mineformat.output += object.text;
+				let i = 0;
+				for (; i < object.with.length; i++) {
+					mineformat.output += mineformat.translation[object.translate][i];
+					mineformat.parseNode(object.with[i]);
+				}
+				mineformat.output += mineformat.translation[object.translate][i];
 			}
 
 		},
@@ -58,6 +63,9 @@ var mineformat = {
 			if (object.text != undefined) {
 				mineformat.parser.text(object);
 			}
+			if (object.translate != undefined) {
+				mineformat.parser.translate(object);
+			}
 			if (object.extra != undefined)
 				mineformat.parseArray(object.extra);
 			mineformat.output += "</span>";
@@ -79,5 +87,14 @@ var mineformat = {
 		},
 
 		translation: {
+			"chat.type.text": ["&lt;", "&gt; ", ""],
+			"chat.type.emote": ["* "," ",""],
+			"chat.type.announcement": ["[","] ",""],
+			"chat.type.admin": ["[", ": ","]"],
+			"chat.type.advancement.task": [""," has made the advancement ",""],
+			"chat.type.advancement.challenge": [""," has completed the challenge ",""],
+			"chat.type.advancement.goal": [""," has reached the goal ",""],
+			"chat.type.team.text": [""," &lt;","&gt; ",""],
+			"chat.type.team.sent": ["-&gt; "," &lt;","&gt; ",""]
 		}
 	}
