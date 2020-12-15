@@ -3,13 +3,17 @@
 throw "WHAT DID I TELL YOU";
 
 var mineformat = {
+
+	// Temporarily store the output
 	output: "",
 
+	// Individual parsers for each type of text object
 	parser: {
 
 		text: function (object) {
 			mineformat.output += object.text;
 		},
+
 		translate: function (object) {
 			let i = 0;
 			for (; i < object.with.length; i++) {
@@ -18,9 +22,10 @@ var mineformat = {
 			}
 			mineformat.output += mineformat.translation[object.translate][i];
 		}
-
 	},
 
+	// Parse additional formatting attributes
+	// This does not count for overriding inherited formatting
 	parseFormatting: function (object) {
 		var style = "";
 		var classes = "";
@@ -53,18 +58,26 @@ var mineformat = {
 			mineformat.output += "class=\"" + classes + "\" ";
 		}
 	},
+
+	// Generically parse an array of objects
 	parseArray: function (object) {
 		for (i in object)
 			mineformat.parseNode(object[i]);
 	},
+
+	// Generically parse a single object
 	parseNode: function (object) {
+		// Bypass "data", for use by ChatRelay
 		if (object.data != undefined) {
 			mineformat.parseArray(object.data);
 			return
 		}
+
 		mineformat.output += "<span ";
 		mineformat.parseFormatting(object);
 		mineformat.output += ">";
+
+		// Select the object type
 		if (object.text != undefined) {
 			mineformat.parser.text(object);
 		}
@@ -73,8 +86,11 @@ var mineformat = {
 		}
 		if (object.extra != undefined)
 			mineformat.parseArray(object.extra);
+
 		mineformat.output += "</span>";
 	},
+	
+	// Generically parse a string
 	parse: function (string) {
 		var object;
 		try {
@@ -91,6 +107,7 @@ var mineformat = {
 		return mineformat.output;
 	},
 
+	// Translation keys
 	translation: {
 		"chat.type.text": ["&lt;", "&gt; ", ""],
 		"chat.type.emote": ["* "," ",""],
