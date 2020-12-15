@@ -57,6 +57,10 @@ var mineformat = {
 				mineformat.parseNode(object[i]);
 		},
 		parseNode: function (object) {
+			if (object.data != undefined) {
+				mineformat.parseArray(object.data);
+				return
+			}
 			mineformat.output += "<span ";
 			mineformat.parseFormatting(object);
 			mineformat.output += ">";
