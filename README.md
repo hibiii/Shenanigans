@@ -1,11 +1,11 @@
-# Misc-Js-For-Web
+# Shenanigans
 
-A small collection of tiny Javascript scripts designed specifically for front-end.
+A small collection of tiny bits of code for random reasons.
 
-## mineformat
+## mineformat.js
 
-A little piece of Javascript that takes some _Minecraft_ (Java) JSON text and formats it to HTML. Work in progress.
+A little piece of Javascript that takes some _Minecraft_ (Java) JSON text and formats it to HTML. Work on it is halted.
 
-## ncCounter
+## ncCounter.js
 
 A NeoCities specific web counter! It uses NeoCities's own API, so it's all in the browser. It's placed in public domain. [More info on ncCounter here.](https://hibi.neocities.org/ncCounter.html)
