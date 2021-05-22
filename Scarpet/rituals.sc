@@ -46,21 +46,36 @@ global_rituals =
 		[[1.5,0,4.5], [0.5,0,2.5]], [[0.5,0,2.5], [1.5,0,0.5]]
 	],
 	'sacrifices' -> [
+		['nether_star', 'blaze_powder', 'blaze_rod', 'ghast_tear', 'golden_apple'],
 		['wither_rose', 'iron_ingot']
 	],
 	'awards' -> [
+		_(player, pos) -> {
+			if(player_wears_armor(player)
+			|| (entity_area('player', pos + [2, 0, 2], [1.5, 1, 1.5]) ~ player == null),
+				destroyCircles(player, pos, true)
+			,
+				if(query(player, 'effect', 'weakness') == null,
+					modify(player, 'effect', 'instant_damage', 1, 1)
+				);
+				modify(player, 'effect', 'fire_resistance', 2147483647, 0, false, false);
+				sound('entity.blaze.ambient',pos(player),1, 1, 'player');
+				sound('block.respawn_anchor.set_spawn', pos + [2, 0, 2], 0.5, 1, 'ambient');
+			);
+		},
 		_(player, pos) -> {
 			print(player('all'), 'yay!')
 		}
 	],
 	'timeOpen' -> 5400, // Thirds-of-seconds a circle stays open 
+	'timeComplete' -> 45, // Thirds-of-seconds a circle plays its "done" animation
 	'circles' -> {}
 };
 
 __on_player_right_clicks_block(player, item_tuple, hand, block, face, hitvec) ->
 {
 	block ~ 'candle' && (item_tuple ~ 'flint_and_steel' || 'fire_charge' != null) && block_state(pos(block), 'lit') == false &&
-		schedule(15, 'isPatternCompleted', pos(block), player);
+		schedule(15, 'makePattern', pos(block), player);
 };
 
 __on_player_changes_dimension(player, from_pos, from_dimension, to_pos, to_dimension) -> { destroyCircles(player, null, false) };
@@ -76,6 +91,13 @@ __on_tick() ->
 			// basic nomenclature
 			circle = global_rituals:'circles':_;
 			position = circle:'pos';
+			player = _;
+			// integrity check
+			if(! isPatternCompleted(position + [2, 0, 0]),
+				closeCircle(player);
+				delete(global_rituals:'circles':player);
+				break();
+			);
 			circle:'tic' += -1;
 			if(circle:'don',
 				// if the circle is done, complete
@@ -86,12 +108,13 @@ __on_tick() ->
 						);
 					);
 					sound('entity.zombie_villager.converted', position + [2, 0, 2], 1, 1, 'ambient');
-					call(global_rituals:'awards':(circle:'rit'), cicle:'nam', circle:'pos');
+					call(global_rituals:'awards':(circle:'rit'), player, position);
 					delete(global_rituals:'circles':_);
 				);
 				for(global_rituals:'lines',
 					particle_line('witch', position + _:0, position + _:1, 1);
 				);
+				particle('witch', pos(player) + [0, 1, 0], 2);
 			, // else //
 				// timeout
 				if(circle:'tic' <= 0,
@@ -118,11 +141,14 @@ __on_tick() ->
 								if(e ~ _ != null, delete(tempList, tempList ~ _));
 							);
 							if(!tempList,
-								for(entity_area('item', position + [2, 0, 2], [2, 1, 2]), modify(_, 'remove'));
+								for(entity_area('item', position + [2, 0, 2], [2, 1, 2]),
+									particle('dust 0 0 0 10', pos(_) + [0, 0.5, 0], 10);
+									modify(_, 'remove');
+								);
 								sound('entity.zombie.infect', position + [2, 0, 2], 1, 1, 'ambient');
 								circle:'don' = true;
 								circle:'rit' = _i;
-								circle:'tic' = 15;
+								circle:'tic' = global_rituals:'timeComplete';
 							);
 						);
 					);
@@ -132,15 +158,22 @@ __on_tick() ->
 	);
 };
 
+makePattern(pos, player) -> {
+	patternOrigin = isPatternCompleted(pos);
+	if(patternOrigin,
+		registerCircle(player, patternOrigin);
+	);
+};
+
 // Checks if a "circle" can be found here by observing the rulesets.
-// param `player`: the player initiating the circle.
-isPatternCompleted(pos, player) ->
+isPatternCompleted(pos) ->
 {
 	patternOrigin = patternRulesetCompleted(pos, global_rituals:'candles');
 	if(patternOrigin
 	&& patternRulesetCompleted(patternOrigin + global_rituals:'dust_dots':'rules':0, global_rituals:'dust_dots'),
-		registerCircle(player, patternOrigin);
-	)
+		return(patternOrigin);
+	);
+	return(null);
 };
 
 // Checks if a pattern ruleset is being followed (O(n²)).
@@ -176,8 +209,7 @@ registerCircle(player, position) ->
 			['pos', position],
 			['dim', query(player, 'dimension')],
 			['tic', global_rituals:'timeOpen'],
-			['don', false],
-			['nam', player]));
+			['don', false]));
 	sound('entity.zombie_villager.cure', position + [2, 0, 2], 1, 0.7, 'ambient');
 	sound('item.trident.thunder', position + [2, 0, 2], 1, 1, 'ambient');
 	spawn('lightning_bolt', position + [2.5, -0.5, 2.5]);
@@ -215,7 +247,7 @@ closeCircle(player) ->
 			destroy(global_rituals:'circles':player:'pos' + _);
 		);
 	);
-}
+};
 
 // Pattern
 //    . * .
@@ -225,3 +257,8 @@ closeCircle(player) ->
 //    * . *
 // *: Candle
 // .: Redstone dust dot
+
+player_wears_armor(player) -> {
+	inv = inventory_get('equipment', player);
+	return(inv:1 || inv:2 || inv:3 || inv:4);
+};
