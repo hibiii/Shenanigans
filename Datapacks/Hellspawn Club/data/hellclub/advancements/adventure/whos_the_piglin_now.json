@@ -1,0 +1,42 @@
+{
+  "parent": "hellclub:adventure/ol_betsy",
+  "display": {
+    "icon": {
+      "item": "minecraft:crossbow",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "text": "Who's the Piglin now?"
+    },
+    "description": {
+      "text": "Give a Piglin a taste of their own medicine"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_piglin": {
+      "trigger": "minecraft:killed_by_crossbow",
+      "conditions": {
+        "victims": [
+          [
+            {
+              "condition": "minecraft:entity_properties",
+              "predicate": {
+                "type": "minecraft:piglin"
+              },
+              "entity": "this"
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_piglin"
+    ]
+  ]
+}

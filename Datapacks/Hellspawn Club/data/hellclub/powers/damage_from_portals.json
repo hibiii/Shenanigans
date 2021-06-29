@@ -1,0 +1,22 @@
+{
+	"type": "origins:damage_over_time",
+	"name": "Interdimensional Allergy",
+	"description": "You take damage from Nether Portals very rapidly.",
+	"interval": 10,
+	"onset_delay": 10,
+	"damage": 12,
+	"damage_easy": 9,
+	"damage_source": {
+	  "name": "wither",
+	  "unblockable": true,
+	  "bypasses_armor": true,
+	  "out_of_world": true
+	},
+	"condition": {
+		"type": "origins:in_block_anywhere",
+		"block_condition": {
+			"type": "origins:block",
+			"block": "minecraft:nether_portal"
+		}
+	}
+  }

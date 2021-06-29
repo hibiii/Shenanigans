@@ -1,0 +1,33 @@
+{
+  "parent": "hellclub:husbandry/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:crimson_fungus"
+    },
+    "title": {
+      "text": "Playing With Danger"
+    },
+    "description": {
+      "text": "Breed two feral Hoglins"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bred": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "minecraft:hoglin"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bred"
+    ]
+  ]
+}

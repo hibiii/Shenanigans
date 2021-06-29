@@ -1,0 +1,33 @@
+{
+  "parent": "hellclub:husbandry/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:warped_fungus"
+    },
+    "title": {
+      "text": "Playing with Rangers"
+    },
+    "description": {
+      "text": "Breed two Striders"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bred": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "parent": {
+          "type": "minecraft:strider"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bred"
+    ]
+  ]
+}

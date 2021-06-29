@@ -1,0 +1,14 @@
+{
+	"powers": [ 
+		"origins:nether_spawn",
+		"hellclub:damage_from_portals",
+		"hellclub:damage_from_overworld"
+	],
+	"icon": {
+		"item": "minecraft:netherrack"
+	},
+	"name": "Nether Native",
+	"description": "Nether Natives are close relatives to Piglins, and similar to humans, though they are bound to the Nether and cannot leave.",
+	"order": 2,
+	"impact": 3
+}

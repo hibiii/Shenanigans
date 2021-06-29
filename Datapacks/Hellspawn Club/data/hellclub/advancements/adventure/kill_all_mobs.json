@@ -1,0 +1,264 @@
+{
+	"parent": "hellclub:adventure/kill_a_mob",
+	"display": {
+	  "icon": {
+		"item": "minecraft:netherite_sword",
+		"nbt": "{Damage:0}"
+	  },
+	  "title": {
+		"translate": "advancements.adventure.kill_all_mobs.title"
+	  },
+	  "description": {
+		"translate": "advancements.adventure.kill_all_mobs.description"
+	  },
+	  "frame": "challenge",
+	  "show_toast": true,
+	  "announce_to_chat": true,
+	  "hidden": false
+	},
+	"rewards": {
+	  "experience": 100
+	},
+	"criteria": {
+	  "minecraft:blaze": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:blaze"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:enderman": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:enderman"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:endermite": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:endermite"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:ghast": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:ghast"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:hoglin": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:hoglin"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:magma_cube": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:magma_cube"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:piglin": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:piglin"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:piglin_brute": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:piglin_brute"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:skeleton": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:skeleton"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:wither_skeleton": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:wither_skeleton"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:wither": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:wither"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:zoglin": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:zoglin"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:zombie": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:zombie"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  },
+	  "minecraft:zombified_piglin": {
+		"trigger": "minecraft:player_killed_entity",
+		"conditions": {
+		  "entity": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "predicate": {
+				"type": "minecraft:zombified_piglin"
+			  },
+			  "entity": "this"
+			}
+		  ]
+		}
+	  }
+	},
+	"requirements": [
+	  [
+		"minecraft:blaze"
+	  ],
+	  [
+		"minecraft:enderman"
+	  ],
+	  [
+		"minecraft:endermite"
+	  ],
+	  [
+		"minecraft:ghast"
+	  ],
+	  [
+		"minecraft:hoglin"
+	  ],
+	  [
+		"minecraft:magma_cube"
+	  ],
+	  [
+		"minecraft:piglin"
+	  ],
+	  [
+		"minecraft:piglin_brute"
+	  ],
+	  [
+		"minecraft:skeleton"
+	  ],
+	  [
+		"minecraft:wither_skeleton"
+	  ],
+	  [
+		"minecraft:wither"
+	  ],
+	  [
+		"minecraft:zoglin"
+	  ],
+	  [
+		"minecraft:zombie"
+	  ],
+	  [
+		"minecraft:zombified_piglin"
+	  ]
+	]
+  }

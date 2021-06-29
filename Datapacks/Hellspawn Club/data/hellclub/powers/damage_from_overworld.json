@@ -1,0 +1,19 @@
+{
+	"type": "origins:damage_over_time",
+	"hidden": true,
+	"interval": 10,
+	"onset_delay": 0,
+	"damage": 20,
+	"damage_easy": 20,
+	"damage_source": {
+	  "name": "wither",
+	  "unblockable": true,
+	  "bypasses_armor": true,
+	  "out_of_world": true
+	},
+	"condition": {
+		"type": "origins:dimension",
+		"dimension": "minecraft:the_nether",
+		"inverted": true
+	}
+  }
