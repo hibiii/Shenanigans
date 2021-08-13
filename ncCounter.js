@@ -1,4 +1,4 @@
-/* ncCounter by Hibi. v3.0.0
+/* ncCounter by Hibi. v3.0.1
  * This software is placed in public domain. In jurisdictions that do not
  * recognize public domain, you are free to do anything with it.
  * This script automatically gets your Neocities website name to poll
@@ -57,11 +57,11 @@ var ncCounter = {
 		/* Skip calling the API if we don't need to */ {
 			var requiresApiCall = false;
 			var counter = document.getElementsByClassName("ncCounter")[index];
-			for(var clazz in ncCounter.blankClasses.getClasses())
+			ncCounter.blankClasses.getClasses().forEach((clazz) => {
 				if(counter.getElementsByClassName(clazz)[0] && ncCounter.blankClasses[clazz].requiresApiCall) {
 					requiresApiCall = true;
-					break;
 				}
+			})
 			if(!requiresApiCall) {
 				ncCounter.Fill(index);
 				return;
