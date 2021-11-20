@@ -10,6 +10,10 @@ A little piece of Javascript that takes some _Minecraft_ (Java) JSON text and fo
 
 A NeoCities specific web counter! It uses NeoCities's own API, so it's all in the browser. It's placed in public domain. [More info on ncCounter here.](https://hibi.neocities.org/ncCounter.html)
 
+## switchjava.sh
+
+A small script that you can put in your PATH to switch between JAVA_HOMEs for a specific command. For more information, please read the comments in the file.
+
 ## windows xp icons for multimc.zip
 
 An icon set for MultiMC5 with icons from Windows XP, fits well when running the launcher in XP.
