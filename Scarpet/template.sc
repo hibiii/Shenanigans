@@ -8,13 +8,19 @@ __config() -> {
 	'allow_command_conflicts' -> false,
 	'commands' -> {
 		// TODO: add commands
-	}
+	},
 	'arguments' -> {
 		// TODO: add arguments
-	}
+	},
+	'resources' -> {
+		// TODO: add resources
+	},
+	'libraries' -> {
+		// TODO: add libraries
+	},
     'requires' -> {
-		'carpet' -> '>=1.4.33',
-		'minecraft' -> '*'
-	}
-	'legacy_command_type_support' -> false
-}
+		'carpet' -> '>=1.4.53',
+		'minecraft' -> '*',
+	},
+	'legacy_command_type_support' -> false,
+};
