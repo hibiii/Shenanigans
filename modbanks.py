@@ -1,5 +1,5 @@
 #!/bin/python3
-# modbanks v1 by hibi
+# modbanks v2 by hibi
 #
 # Lets you switch a bank of mods on a multimc/polymc minecraft instance depending on the currently installed modloader.
 # Code quality is of no concern
@@ -22,10 +22,22 @@ class Loader(Enum):
 		'directory': '/quiltmods',
 		'website': 'https://quiltmc.org/'
 	}
+	FORGE = {
+		'name': 'Forge',
+		'directory': '/forgemods',
+		'website': 'https://minecraftforge.net/'
+	}
+	LITELOADER = {
+		'name': 'LiteLoader',
+		'directory': '/liteloadermods',
+		'website': 'https://liteloader.com/'
+	}
 
 loaderRules = {
 	'net.fabricmc.fabric-loader': Loader.FABRIC,
-	'org.quiltmc.quilt-loader': Loader.QUILT
+	'org.quiltmc.quilt-loader': Loader.QUILT,
+	'net.minecraftforge': Loader.FORGE,
+	'com.mumfrey.liteloader': Loader.LITELOADER
 }
 
 # Returns the currently installed mod loader by inspecting the mmc-pack file.
@@ -105,7 +117,7 @@ modbank instructions - Show more detailed instructions
 modbank              - Show this lol
 
 modbank MUST be run in the context of a multimc/polymc custom command.
-modbank v1''')
+modbank v2''')
 		os._exit(os.EX_USAGE)
 	if(sys.argv[1] == 'instructions'):
 		print('''modbank MUST be run in the context of a MultiMC/PolyMC custom command. This is
