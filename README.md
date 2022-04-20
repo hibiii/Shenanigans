@@ -2,7 +2,7 @@
 
 A small collection of tiny bits of code for random reasons.
 
-# modbanks.py
+## modbanks.py
 
 A little script I made for switching between banks of mods. It's meant to be used as a pre-launch custom command in MultiMC/PolyMC, and effectively symlinks `/mods` to `/fabricmods` or `/quiltmods`. See the file or run it with the `instructions` argument to get more details. Only Fabric and Quilt are supported for now.
 
